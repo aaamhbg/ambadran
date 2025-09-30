@@ -1,5 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/USER/public_html
-    - /bin/sh -c 'echo "deployed OK" > /home/ambadran/public_html/DEPLOY_OK.txt'
+    - export DEPLOYPATH=/home/ambadran/public_html
+    - /usr/bin/rsync -a --delete --exclude='.git' --exclude='.cpanel.yml' ./ $DEPLOYPATH
+    # بديل لو /usr/bin/rsync غير موجود عند مزودك:
+    # - /bin/rsync -a --delete --exclude='.git' --exclude='.cpanel.yml' ./ $DEPLOYPATH
